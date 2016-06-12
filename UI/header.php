@@ -22,6 +22,7 @@ and open the template in the editor.
         <script type="text/javascript" src="libs/semantic/dist/components/dropdown.js"></script>
         
         <?php include_once 'addCompany.php'; ?>
+        <?php include_once 'addGroup.php'; ?>
 
 
 
@@ -61,6 +62,7 @@ and open the template in the editor.
                 Company <i class="dropdown icon"></i>
                 <div class="menu">
                     <a id="addCompany" class="item">Add Company</a>
+                    <a id="addGroup" class="item">Add Group</a>
                     <a href="UI/viewCompany.php" class="item">View Company</a>
                 </div>
             </div>
