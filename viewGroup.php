@@ -77,9 +77,10 @@ and open the template in the editor.
 
 
         <div class="ui top attached button">
-            <div class="ui large buttons">
-                <button class="ui button">Company Groups</button>
-            </div>
+            <!--            <div class="ui large buttons">
+                            <button class="ui button">Company Groups</button>
+                        </div>-->
+            <h1 class="ui header">First header</h1>
         </div>
         <table class="ui celled striped table" id="resize">
             <col width="40px" />

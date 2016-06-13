@@ -8,14 +8,24 @@ and open the template in the editor.
 ?>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <title></title>
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/form.css">
+        <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/reset.css">
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/modal.css">
+        <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/checkbox.css">
+        <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/dropdown.css">
+
+
         <script type="text/javascript" src="libs/semantic/dist/components/modal.js"></script>
         <script type="text/javascript" src="libs/semantic/dist/components/dimmer.js"></script>
         <script type="text/javascript" src="libs/semantic/dist/components/form.js"></script>
-        <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/checkbox.css">
+        <script type="text/javascript" src="libs/semantic/dist/components/dropdown.js"></script>
+
+
+
 
         <script type="text/javascript">
             $(function () {
@@ -29,7 +39,15 @@ and open the template in the editor.
                     $('.ui.modal').modal('hide');
                     return false;
                 });
+
+
             });
+
+            $(document).ready(function () {
+                $('#select')
+                        .dropdown()
+                        ;
+            })
         </script>
     </head>
     <body>
@@ -43,31 +61,46 @@ and open the template in the editor.
             <div class="ui basic segment"> 
                 <form class ="ui form" method="post" name="insertform" action="InsertCompany.php"> 
                     <!--<div class="ui segment">-->
-                    <div class="fifteen wide field">
+                    <div class="sixteen wide field">
                         <label>Code</label>
                         <input type="text" name="c_code"/>
                     </div>
 
-                    <div class="fifteen wide field">
+                    <div class="sixteen wide field">
                         <label>Name</label>
                         <input type="text" name="c_name"/>
                     </div>
 
-                    <div class="fifteen wide field">
+                    <!--<div class="ui segment">--> 
+                    <div class="sixteen wide field">
+                        <!--                        <label>Group</label>
+                                                <input type="text" name="c_group"/>-->
                         <label>Group</label>
-                        <input type="text" name="c_group"/>
-                    </div>
-
-                    <!--<div class="fifteen wide field">-->
-                    <div class="field">
-                        <div class="ui toggle checkbox">
-                            <input type="checkbox" name="c_favorite">
-                            <label>Add to favorite</label>
+                        <div class="ui selection dropdown" id="select">
+                            <input type="hidden" name="gender">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Gender</div>
+                            <div class="menu">
+                                <div class="item" data-value="male">Male</div>
+                                <div class="item" data-value="female">Female</div>
+                            </div>
                         </div>
                     </div>
                     <!--</div>-->
 
-                    <div class="fifteen wide field">
+                    <!--<div class="fifteen wide field">-->
+                    <div class="sixteen wide field">
+                        <label>Add to favorite</label>
+                        <div class="ui segment">
+                            <div class="ui toggle checkbox">
+                                <input type="checkbox" name="c_favorite" checked>
+                                <label></label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--</div>-->
+
+                    <div class="sixteen wide field">
                         <input class="ui primary button" type="submit" name="send" value="Add" id="inputid">
                         <input class="ui button" type="button" value="Cancel" id="closeAddCompany">
                     </div>
