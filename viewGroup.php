@@ -50,26 +50,14 @@ and open the template in the editor.
                 $(function () {
                     $("#resize").colResizable();
                 });
-                $('.favorite').click(function () {
-                    console.log($(this).val());
-                    console.log($(this).is(':checked'));
-                    var dataValue = {'c_code': $(this).val(), 'favorite': $(this).is(':checked') ? 1 : 0};
-                    $.ajax({
-                        type: "POST",
-                        url: 'UpdateFavorite.php',
-                        data: dataValue,
-                        success: function (result) {
-                            window.console.log('Successful');
-                        }
-                    });
-                });
+
                 $("#resize").colResizable({liveDrag: true});
 
                 $('#negative-ui').click(function () {
-                    var dataValue = {'c_code': $(this).val()};
+                    var dataValue = {'g_id': $(this).val()};
                     $.ajax({
                         type: "POST",
-                        url: 'DeleteCompany.php',
+                        url: 'DeleteGroup.php',
                         data: dataValue,
                         success: function (result) {
                             window.console.log('Successful');

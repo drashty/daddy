@@ -46,7 +46,7 @@ class GroupTableOperation {
 
     function delete($id) {
         if ($this->mysqli != NULL) {
-            $sql = "DELETE FROM c_group where c_id=$id";
+            $sql = "DELETE FROM c_group where g_id=$id";
             $this->mysqli->query($sql);
         }
     }
