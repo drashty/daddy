@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
     <head>
         <?php include_once 'header.php'; ?>
@@ -10,17 +16,19 @@
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/dimmer.css">
         <script type="text/javascript" src="libs/semantic/dist/components/dimmer.js"></script>
     </head>
+    <body>
+        <?php
+        include 'GroupTableOperation.php';
+        $groupTableOperation = new GroupTableOperation();
+        ?>
 
-    <body> 
+
         <div class="ui page dimmer">
             <div class="content">
                 <!--Page content will go here-->
             </div>
         </div>
-        <?php
-        include 'CompanyTableOperation.php';
-        $companyTableOperation = new CompanyTableOperation();
-        ?>
+
 
         <style type="text/css"> 
             #fixedButton {
@@ -82,49 +90,31 @@
 
         <div class="ui top attached button">
             <div class="ui large buttons">
-                <button class="ui button">Add Company</button>
-                <div class="or"></div>
-                <button class="ui button">Add Group</button>
+                <button class="ui button">Company Groups</button>
             </div>
         </div>
-        <table class="ui single line celled table" id="resize">
-            <col width="10px" />
-            <col width="10px" />
+        <table class="ui celled striped table" id="resize">
             <col width="40px" />
             <col width="10px" />
             <col width="10px" />
+            <col width="40px" />
             <thead>
                 <tr>
-                    <th><center>Code</center></th>
-        <th><center>Group</center></th>
-    <th><center>Name</center></th>
-<th><center>Favorite</center></th>
-<th><center>Delete</center></th>
+                    <th><center></center></th>
+        <th><center>Group Name</center></th>
+    <th><center>Delete</center></th>
+<th><center></center></th>
 </tr>
 </thead>
 
 <tbody>
     <?php for ($i = 0; $i < 20; $i++) { ?>
-        <?php foreach ($companyTableOperation->read() as $obj) { ?>
+        <?php foreach ($groupTableOperation->read() as $obj) { ?>
             <tr>
-                <td><center><?php echo $obj->c_code; ?></center></td>
-        <td><center><?php echo $obj->c_group; ?></center></td>
-        <td><center><?php echo $obj->c_name; ?></center></td>
-        <td>
-        <center>
-            <div class="ui fitted checkbox">
-                <div class="ui fitted toggle checkbox">
-                    <input type="checkbox" class="favorite" value=<?php echo $obj->c_code; ?> <?php
-                           if ($obj->c_favorite == '1') {
-                               echo 'checked';
-                           }
-                           ?>>
-                    <label></label>
-                </div>
-            </div>
-        </center>
-        </td>
-        <td><center><button class="negative ui button" id="negative-ui" name="delete" value=<?php echo $obj->c_code; ?> type='submit'>Delete</button></center></td>
+                <td></td>
+                <td><center><?php echo $obj->g_name; ?></center></td>
+        <td><center><button class="negative ui button" id="negative-ui" name="delete" value=<?php echo $obj->g_id; ?> type='submit'>Delete</button></center></td>
+        <td></td>
         </tr>
     <?php } ?> 
     <?php
@@ -136,9 +126,5 @@
 </div>
 
 
-
-<!--        <button class="circular ui icon button" id="fixedButton">
-    <i class="icon settings"></i>
-</button>-->
 </body>
 </html>

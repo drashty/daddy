@@ -63,7 +63,8 @@ and open the template in the editor.
                 <div class="menu">
                     <a id="addCompany" class="item">Add Company</a>
                     <a id="addGroup" class="item">Add Group</a>
-                    <a href="UI/viewCompany.php" class="item">View Company</a>
+                    <a href="viewCompany.php" class="item">View Company</a>
+                    <a href="viewGroup.php" class="item">View Group</a>
                 </div>
             </div>
 

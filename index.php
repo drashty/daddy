@@ -10,7 +10,7 @@ and open the template in the editor.
     </head>
 
     <body>
-        <?php include_once 'UI/header.php'; ?>
-        <?php include_once 'UI/viewCompany.php'; ?>
+        <?php include_once 'header.php'; ?>
+        <?php include_once 'viewCompany.php'; ?>
     </body>
 </html>
