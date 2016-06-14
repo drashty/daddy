@@ -10,11 +10,11 @@ class CompanyTableOperation {
     function insert($data) {
         if ($this->mysqli != NULL) {
             $companyModelObject = new CompanyModel($data);
-            $sql = "INSERT INTO company(c_code, c_name, c_group, c_favorite) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO company(c_code, c_name, g_id, c_favorite) VALUES (?, ?, ?, ?)";
             if ($this->mysqli->prepare($sql)) {
                 $stmt = $this->mysqli->prepare($sql);
                 print_r($companyModelObject);
-                $stmt->bind_param("ssss", $companyModelObject->code, $companyModelObject->name, $companyModelObject->group, $companyModelObject->favorite);
+                $stmt->bind_param("ssss", $companyModelObject->code, $companyModelObject->name, $companyModelObject->groupId, $companyModelObject->favorite);
                 $stmt->execute();
                 echo 'INSERT QUERY';
             } else {
@@ -32,7 +32,7 @@ class CompanyTableOperation {
 
     function read() {
         if ($this->mysqli != NULL) {
-            $sql = "SELECT * FROM company";
+            $sql = "SELECT * FROM company INNER JOIN c_group ON company.g_id = c_group.g_id";
             $result = $this->mysqli->query($sql);
             $rows = Array();
             while ($row = $result->fetch_object()) {

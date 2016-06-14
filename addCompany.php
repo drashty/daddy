@@ -84,9 +84,9 @@ and open the template in the editor.
                                                 <input type="text" name="c_group"/>-->
                         <label>Group</label>
                         <div class="ui selection dropdown" id="select">
-                            <input type="hidden" name="gender">
+                            <input type="hidden" name="g_id">
                             <i class="dropdown icon"></i>
-                            <div class="default text">Gender</div>
+                            <div class="default text">Group</div>
                             <div class="menu">
 
                                 <?php foreach ($groupTableOperation->read() as $obj) { ?>

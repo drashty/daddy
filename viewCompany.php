@@ -106,7 +106,7 @@
                         <?php foreach ($companyTableOperation->read() as $obj) { ?>
                             <tr>
                                 <td><center><?php echo $obj->c_code; ?></center></td>
-                        <td><center><?php echo $obj->c_group; ?></center></td>
+                        <td><center><?php echo $obj->g_name; ?></center></td>
                         <td><center><?php echo $obj->c_name; ?></center></td>
                         <td>
                         <center>
