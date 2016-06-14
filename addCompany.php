@@ -33,6 +33,7 @@ and open the template in the editor.
                     $('#addCompanyModal')
                             .modal('setting', 'transition', 'vertical flip')
                             .modal('show');
+
                 });
 
                 $('#closeAddCompany').click(function (e) {
@@ -49,9 +50,15 @@ and open the template in the editor.
                         ;
             })
         </script>
+
+
     </head>
     <body>
 
+        <?php
+        include_once 'GroupTableOperation.php';
+        $groupTableOperation = new GroupTableOperation();
+        ?>
 
         <div class="ui small modal" id="addCompanyModal">
 
@@ -81,8 +88,10 @@ and open the template in the editor.
                             <i class="dropdown icon"></i>
                             <div class="default text">Gender</div>
                             <div class="menu">
-                                <div class="item" data-value="male">Male</div>
-                                <div class="item" data-value="female">Female</div>
+
+                                <?php foreach ($groupTableOperation->read() as $obj) { ?>
+                                <div class = "item" data-value = <?php echo $obj->g_id; ?> > <?php echo $obj->g_name; ?> </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

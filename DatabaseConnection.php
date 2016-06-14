@@ -5,15 +5,18 @@
 	define('DATABASE', 'dad');
 class DatabaseConnection {
     
-    private $connection;
+    static private $connection;
             
 	function connect() {
-            $this->connection = NULL;
+            if ($this->connection == NULL) {
+                
             try {
                 $this->connection = new mysqli(HOST, USER, PASSWORD, DATABASE);
             } catch (Exception $ex) {
                 echo $ex->getMessage();
             }
+            }
+            
             return $this->connection;          
 	}	
 }

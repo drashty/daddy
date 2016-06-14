@@ -18,7 +18,7 @@
             </div>
         </div>
         <?php
-        include 'CompanyTableOperation.php';
+        include_once 'CompanyTableOperation.php';
         $companyTableOperation = new CompanyTableOperation();
         ?>
 
@@ -79,66 +79,65 @@
 
 
 
+        <!--<div class="ui basic disabled inverted segment">--> 
+    <!--<center><h3 class="ui disabled dividing header">All Companies</h3></center>-->
 
-        <div class="ui top attached button">
-            <div class="ui large buttons">
-                <button class="ui button">Add Company</button>
-                <div class="or"></div>
-                <button class="ui button">Add Group</button>
-            </div>
+        <!--</div>-->
+        <div class="ui top attached button" tabindex="0">Company Listing</div>
+        <div class="ui attached segment">
+            <table class="ui celled striped table" id="resize">
+                <col width="10px" />
+                <col width="10px" />
+                <col width="40px" />
+                <col width="10px" />
+                <col width="10px" />
+                <thead>
+                    <tr>
+                        <th><center>Code</center></th>
+                <th><center>Group</center></th>
+                <th><center>Name</center></th>
+                <th><center>Favorite</center></th>
+                <th><center>Delete</center></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                    <?php for ($i = 0; $i < 20; $i++) { ?>
+                        <?php foreach ($companyTableOperation->read() as $obj) { ?>
+                            <tr>
+                                <td><center><?php echo $obj->c_code; ?></center></td>
+                        <td><center><?php echo $obj->c_group; ?></center></td>
+                        <td><center><?php echo $obj->c_name; ?></center></td>
+                        <td>
+                        <center>
+                            <div class="ui fitted checkbox">
+                                <div class="ui fitted toggle checkbox">
+                                    <input type="checkbox" class="favorite" value=<?php echo $obj->c_code; ?> <?php
+                                    if ($obj->c_favorite == '1') {
+                                        echo 'checked';
+                                    }
+                                    ?>>
+                                    <label></label>
+                                </div>
+                            </div>
+                        </center>
+                        </td>
+                        <td><center><button class="negative ui button" id="negative-ui" name="delete" value=<?php echo $obj->c_code; ?> type='submit'>Delete</button></center></td>
+                        </tr>
+                    <?php } ?> 
+                    <?php
+                }
+                ?>
+
+                </tbody>
+            </table>
         </div>
-        <table class="ui celled striped table" id="resize">
-            <col width="10px" />
-            <col width="10px" />
-            <col width="40px" />
-            <col width="10px" />
-            <col width="10px" />
-            <thead>
-                <tr>
-                    <th><center>Code</center></th>
-        <th><center>Group</center></th>
-    <th><center>Name</center></th>
-<th><center>Favorite</center></th>
-<th><center>Delete</center></th>
-</tr>
-</thead>
-
-<tbody>
-    <?php for ($i = 0; $i < 20; $i++) { ?>
-        <?php foreach ($companyTableOperation->read() as $obj) { ?>
-            <tr>
-                <td><center><?php echo $obj->c_code; ?></center></td>
-        <td><center><?php echo $obj->c_group; ?></center></td>
-        <td><center><?php echo $obj->c_name; ?></center></td>
-        <td>
-        <center>
-            <div class="ui fitted checkbox">
-                <div class="ui fitted toggle checkbox">
-                    <input type="checkbox" class="favorite" value=<?php echo $obj->c_code; ?> <?php
-                           if ($obj->c_favorite == '1') {
-                               echo 'checked';
-                           }
-                           ?>>
-                    <label></label>
-                </div>
-            </div>
-        </center>
-        </td>
-        <td><center><button class="negative ui button" id="negative-ui" name="delete" value=<?php echo $obj->c_code; ?> type='submit'>Delete</button></center></td>
-        </tr>
-    <?php } ?> 
-    <?php
-}
-?>
-
-</tbody>
-</table>
-</div>
+    </div>
 
 
 
-<!--        <button class="circular ui icon button" id="fixedButton">
-    <i class="icon settings"></i>
-</button>-->
+    <!--        <button class="circular ui icon button" id="fixedButton">
+        <i class="icon settings"></i>
+    </button>-->
 </body>
 </html>

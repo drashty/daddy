@@ -18,7 +18,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        include 'GroupTableOperation.php';
+        include_once 'GroupTableOperation.php';
         $groupTableOperation = new GroupTableOperation();
         ?>
 

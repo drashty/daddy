@@ -1,7 +1,7 @@
 <?php
 
-include 'DatabaseConnection.php';
-include 'CompanyModel.php';
+include_once 'DatabaseConnection.php';
+include_once 'CompanyModel.php';
 
 class CompanyTableOperation {
 

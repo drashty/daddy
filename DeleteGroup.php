@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-include 'GroupTableOperation.php';
+include_once 'GroupTableOperation.php';
 
 if (isset($_REQUEST['g_id'])) {
     $id = $_REQUEST['g_id'];

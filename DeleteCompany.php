@@ -5,7 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
-include 'CompanyTableOperation.php';
+include_once 'CompanyTableOperation.php';
 
 if (isset($_REQUEST['c_code'])) {
     $id = $_REQUEST['c_code'];

@@ -6,8 +6,8 @@
  * and open the template in the editor.
  */
 
-include 'DatabaseConnection.php';
-include 'GroupModel.php';
+include_once 'DatabaseConnection.php';
+include_once 'GroupModel.php';
 
 class GroupTableOperation {
 
