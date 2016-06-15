@@ -44,9 +44,27 @@ class GroupTableOperation {
         }
     }
 
+    function getGroupNameForId($id) {
+        if ($this->mysqli != NULL) {
+            $sql = "SELECT * FROM c_group where g_id = $id";
+            $result = $this->mysqli->query($sql);
+            $row = $result->fetch_object();
+            return $row;
+        }
+    }
+
     function delete($id) {
         if ($this->mysqli != NULL) {
             $sql = "DELETE FROM c_group where g_id=$id";
+            $this->mysqli->query($sql);
+        }
+    }
+
+    function updateGroupName($data) {
+        if ($this->mysqli != NULL) {
+            $groupModelObject = new GroupModel($data);
+            $sql = "UPDATE c_group SET g_name = '$groupModelObject->name' WHERE g_id= '$groupModelObject->id'";
+            echo $sql;
             $this->mysqli->query($sql);
         }
     }

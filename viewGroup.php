@@ -17,6 +17,7 @@ and open the template in the editor.
         <script type="text/javascript" src="libs/semantic/dist/components/dimmer.js"></script>
     </head>
     <body>
+        <?php include_once 'addGroup.php'; ?>
         <?php
         include_once 'GroupTableOperation.php';
         $groupTableOperation = new GroupTableOperation();
@@ -42,11 +43,23 @@ and open the template in the editor.
                 margin: 0.0em 0.0em;
             }
 
+            #groupNameButton {
+                background-color: Transparent;
+                background-repeat:no-repeat;
+                border: none;
+                cursor:pointer;
+                overflow: hidden;
+                outline:none;
+                padding: 0.5em 0.5em;
+                margin: 0.0em 0.0em;
+            }
+
             table.fixed { table-layout:fixed; }
             table.fixed td { overflow: hidden; }
         </style>
         <script type="text/javascript">
             $(document).ready(function () {
+
                 $(function () {
                     $("#resize").colResizable();
                 });
@@ -66,10 +79,6 @@ and open the template in the editor.
                     });
                 });
             });
-
-
-
-
         </script>
 
 
@@ -80,7 +89,7 @@ and open the template in the editor.
             <!--            <div class="ui large buttons">
                             <button class="ui button">Company Groups</button>
                         </div>-->
-            <h1 class="ui header">First header</h1>
+            <h1 class="ui header">Groups</h1>
         </div>
         <table class="ui celled striped table" id="resize">
             <col width="40px" />
@@ -101,7 +110,8 @@ and open the template in the editor.
         <?php foreach ($groupTableOperation->read() as $obj) { ?>
             <tr>
                 <td></td>
-                <td><center><?php echo $obj->g_name; ?></center></td>
+
+                <td><center><div class="menu"><button class="ui button" id="groupNameButton" onclick="editGroup('<?php echo $obj->g_id; ?>', '<?php echo $obj->g_name; ?>')" class="item"><?php echo $obj->g_name; ?></button></div></center></td>
         <td><center><button class="negative ui button" id="negative-ui" name="delete" value=<?php echo $obj->g_id; ?> type='submit'>Delete</button></center></td>
         <td></td>
         </tr>

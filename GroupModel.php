@@ -11,6 +11,7 @@ class GroupModel {
     var $name;
     
     public function __construct($data) {
+        $this->id = $data['g_id'];
         $this->name = $data['g_name'];
     }
 }
