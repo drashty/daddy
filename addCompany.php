@@ -26,21 +26,46 @@ and open the template in the editor.
 
 
         <script type="text/javascript">
-            $(function () {
-                $('#addCompany').click(function () {
-                    $('#addCompanyModal')
-                            .modal('setting', 'transition', 'vertical flip')
-                            .modal('show');
 
-                });
+            function closeAddCompany() {
+                $('.ui.modal').modal('hide');
+                return false;
+            }
 
-                $('#closeAddCompany').click(function (e) {
-                    $('.ui.modal').modal('hide');
-                    return false;
-                });
+            function addCompany() {
+                $('#companyCodeTextField').val("");
+                $('#groupNameTextField').html("");
+                $('#companyNameTextField').val("");
+                $('#groupCodeTextField').val("");
+                $('#favoriteSwitch').prop('checked', true);
+                $('#companyModalHeader').html("Add Company");
+                $('#editCompanyCodeHiddenTextField').val("");
+                $('#submitCompanyButton').val("Add");
+                showCompanyModal();
+            }
 
+            function editCompany(code, groupCode, groupName, companyName, favorite) {
+                console.log(favorite);
+                $('#companyCodeTextField').val(code);
+                $('#groupNameTextField').html(groupName);
+                $('#companyNameTextField').val(companyName);
+                $('#groupCodeTextField').val(groupCode);
+                $('#editCompanyCodeHiddenTextField').val(code);
+                if (favorite == 1) {
+                    $('#favoriteSwitch').prop('checked', true);
+                } else {
+                    $('#favoriteSwitch').prop('checked', false);
+                }
+                $('#companyModalHeader').html("Edit Company");
+                $('#submitCompanyButton').val("Edit");
+                showCompanyModal();
+            }
 
-            });
+            function showCompanyModal() {
+                $('#addCompanyModal')
+                        .modal('setting', 'transition', 'vertical flip')
+                        .modal('show');
+            }
 
             $(document).ready(function () {
                 $('#select')
@@ -62,18 +87,19 @@ and open the template in the editor.
 
             <!--<div class="ui middle aligned center aligned grid">-->
             <!--<div class="column">-->
-            <h4 class="ui dividing header">Add Company</h4>
+            <h4 id="companyModalHeader" class="ui dividing header">Add Company</h4>
             <div class="ui basic segment"> 
-                <form class ="ui form" method="post" name="insertform" action="InsertCompany.php"> 
+                <form class ="ui form" method="post" id="addCompanyForm" name="insertform" action="InsertCompany.php"> 
                     <!--<div class="ui segment">-->
                     <div class="sixteen wide field">
                         <label>Code</label>
-                        <input type="text" name="c_code"/>
+                        <input id="editCompanyCodeHiddenTextField" type="hidden" name="c_hiddenCode"/>
+                        <input id="companyCodeTextField" type="text" name="c_code"/>
                     </div>
 
                     <div class="sixteen wide field">
                         <label>Name</label>
-                        <input type="text" name="c_name"/>
+                        <input id="companyNameTextField" type="text" name="c_name"/>
                     </div>
 
                     <!--<div class="ui segment">--> 
@@ -82,13 +108,13 @@ and open the template in the editor.
                                                 <input type="text" name="c_group"/>-->
                         <label>Group</label>
                         <div class="ui selection dropdown" id="select">
-                            <input type="hidden" name="g_id">
+                            <input type="hidden" name="g_id" id="groupCodeTextField">
                             <i class="dropdown icon"></i>
-                            <div class="default text">Group</div>
+                            <div class="text" id="groupNameTextField"></div>
                             <div class="menu">
 
                                 <?php foreach ($groupTableOperation->read() as $obj) { ?>
-                                <div class = "item" data-value = <?php echo $obj->g_id; ?> > <?php echo $obj->g_name; ?> </div>
+                                    <div class = "item" data-value = <?php echo $obj->g_id; ?> > <?php echo $obj->g_name; ?> </div>
                                 <?php } ?>
                             </div>
                         </div>
@@ -100,7 +126,7 @@ and open the template in the editor.
                         <label>Add to favorite</label>
                         <div class="ui segment">
                             <div class="ui toggle checkbox">
-                                <input type="checkbox" name="c_favorite" checked>
+                                <input type="checkbox" id="favoriteSwitch" name="c_favorite" checked>
                                 <label></label>
                             </div>
                         </div>
@@ -108,8 +134,8 @@ and open the template in the editor.
                     <!--</div>-->
 
                     <div class="sixteen wide field">
-                        <input class="ui primary button" type="submit" name="send" value="Add" id="inputid">
-                        <input class="ui button" type="button" value="Cancel" id="closeAddCompany">
+                        <input class="ui primary button" id="submitCompanyButton" type="submit" name="send" value="Add">
+                        <input class="ui button" type="button" value="Cancel" onclick="closeAddCompany()">
                     </div>
                     <!--</div>-->
 

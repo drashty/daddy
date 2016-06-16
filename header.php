@@ -61,8 +61,8 @@ and open the template in the editor.
             <div class="ui dropdown item">
                 Company <i class="dropdown icon"></i>
                 <div class="menu">
-                    <a id="addCompany" class="item">Add Company</a>
-                    <a id="addGroup" onclick="addGroup()" class="item">Add Group</a>
+                    <a onclick="addCompany()" class="item">Add Company</a>
+                    <a onclick="addGroup()" class="item">Add Group</a>
                     <a href="viewCompany.php" class="item">View Company</a>
                     <a href="viewGroup.php" class="item">View Group</a>
                 </div>

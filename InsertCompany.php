@@ -1,10 +1,16 @@
 <?php
 
-	include_once 'CompanyTableOperation.php';
-            if (isset($_POST['send'])) {
-                $gamesTable = new CompanyTableOperation();
-                $gamesTable->insert($_POST);   
-                header("Location:index.php");
-            } 
+include_once 'CompanyTableOperation.php';
+if (isset($_REQUEST['send'])) {
+    if (isset($_REQUEST['c_hiddenCode'])) {
+        $gamesTable = new CompanyTableOperation();
+        $gamesTable->updateCompanyDetails($_REQUEST);
+        header("Location:index.php");
+    } else {
+        $gamesTable = new CompanyTableOperation();
+        $gamesTable->insert($_REQUEST);
+        header("Location:index.php");
+    }
+} 
             
             

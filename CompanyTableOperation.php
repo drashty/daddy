@@ -24,6 +24,14 @@ class CompanyTableOperation {
             echo 'NO Connection';
         }
     }
+    
+    function updateCompanyDetails($data) {
+        if ($this->mysqli != NULL) {
+            $companyModelObject = new CompanyModel($data);
+            $sql = "UPDATE company SET c_code = '$companyModelObject->code', c_name = '$companyModelObject->name', g_id = '$companyModelObject->groupId', c_favorite = '$companyModelObject->favorite' WHERE c_code= '$companyModelObject->hiddenCode'";
+            $this->mysqli->query($sql);
+        }
+    }
 
     function updateFavorite($id, $isFavorite) {
         $sql = "UPDATE company SET c_favorite = '$isFavorite' WHERE c_code= '$id'";

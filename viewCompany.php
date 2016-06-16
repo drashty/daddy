@@ -34,6 +34,17 @@
                 margin: 0.0em 0.0em;
             }
 
+            #companyNameButton {
+                background-color: Transparent;
+                background-repeat:no-repeat;
+                border: none;
+                cursor:pointer;
+                overflow: hidden;
+                outline:none;
+                padding: 0.5em 0.5em;
+                margin: 0.0em 0.0em;
+            }
+            
             table.fixed { table-layout:fixed; }
             table.fixed td { overflow: hidden; }
         </style>
@@ -71,6 +82,10 @@
                 });
             });
 
+            function cellClicked(code, groupCode , groupName, companyName, favorite) {
+                console.log("CELL CLICKED");
+                editCompany(code, groupCode, groupName, companyName, favorite);
+            }
 
 
 
@@ -104,10 +119,10 @@
                 <tbody>
                     <?php for ($i = 0; $i < 20; $i++) { ?>
                         <?php foreach ($companyTableOperation->read() as $obj) { ?>
-                            <tr>
+                    <tr>
                                 <td><center><?php echo $obj->c_code; ?></center></td>
                         <td><center><?php echo $obj->g_name; ?></center></td>
-                        <td><center><?php echo $obj->c_name; ?></center></td>
+                        <td><center><button class="ui button" id="companyNameButton" onclick="cellClicked('<?php echo $obj->c_code; ?>', '<?php echo $obj->g_id; ?>', '<?php echo $obj->g_name; ?>', '<?php echo $obj->c_name; ?>', '<?php echo $obj->c_favorite; ?>')" class="item"><?php echo $obj->c_name; ?></button></center></td>
                         <td>
                         <center>
                             <div class="ui fitted checkbox">
