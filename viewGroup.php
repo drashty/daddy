@@ -12,6 +12,8 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/checkbox.css">
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/button.css">
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/segment.css">
+        <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/grid.css">
+        <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/icon.css">
         <script src="libs/resizablecell/colResizable.js"></script>
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/dimmer.css">
         <script type="text/javascript" src="libs/semantic/dist/components/dimmer.js"></script>
@@ -53,6 +55,23 @@ and open the template in the editor.
                 padding: 0.5em 0.5em;
                 margin: 0.0em 0.0em;
             }
+            
+            #groupNameTitle {
+                background-color: Transparent;
+                background-repeat:no-repeat;
+                border: none;
+                cursor:pointer;
+                overflow: hidden;
+                outline:none;
+                padding: 0.5em 0.5em;
+                margin: 0.0em 0.0em;
+                margin-top:-0.1cm; 
+                font-size: 26px;
+            }
+
+            #groupListingMenu {
+                height: 80px;
+            }
 
             table.fixed { table-layout:fixed; }
             table.fixed td { overflow: hidden; }
@@ -85,12 +104,22 @@ and open the template in the editor.
 
 
 
-        <div class="ui top attached button">
-            <!--            <div class="ui large buttons">
-                            <button class="ui button">Company Groups</button>
-                        </div>-->
-            <h1 class="ui header">Groups</h1>
+        <div class="ui grid" id="groupListingMenu">
+            <div class="row">
+                <div class="column"></div>
+                <div class="fourteen wide column">
+                    <center><button class="ui button" id="groupNameTitle">Group Listing</button></center>
+                </div>
+                <div class="column">
+                    <center>
+                        <button onclick="addGrpup()" class="ui primary circular icon button">
+                            <i class="icon plus"></i>
+                        </button>
+                    </center>
+                </div>
+            </div>
         </div>
+        
         <table class="ui celled striped table" id="resize">
             <col width="40px" />
             <col width="10px" />

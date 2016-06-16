@@ -1,11 +1,18 @@
 <html>
     <head>
-        <?php include_once 'header.php'; ?>
+        <?php
+        include_once 'header.php';
+        include_once 'addCompny.php';
+        ?>
         <title>View</title>
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/table.css">
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/checkbox.css">
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/button.css">
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/segment.css">
+        <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/menu.css">
+        <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/input.css">
+        <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/icon.css">
+        <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/grid.css">
         <script src="libs/resizablecell/colResizable.js"></script>
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/dimmer.css">
         <script type="text/javascript" src="libs/semantic/dist/components/dimmer.js"></script>
@@ -44,7 +51,25 @@
                 padding: 0.5em 0.5em;
                 margin: 0.0em 0.0em;
             }
-            
+
+            #companyNameTitle {
+                background-color: Transparent;
+                background-repeat:no-repeat;
+                border: none;
+                cursor:pointer;
+                overflow: hidden;
+                outline:none;
+                padding: 0.5em 0.5em;
+                margin: 0.0em 0.0em;
+                margin-top:0.0cm; 
+                font-size: 26px;
+            }
+
+            #companyListingMenu {
+                height: 85px;
+            }
+
+
             table.fixed { table-layout:fixed; }
             table.fixed td { overflow: hidden; }
         </style>
@@ -82,7 +107,7 @@
                 });
             });
 
-            function cellClicked(code, groupCode , groupName, companyName, favorite) {
+            function cellClicked(code, groupCode, groupName, companyName, favorite) {
                 console.log("CELL CLICKED");
                 editCompany(code, groupCode, groupName, companyName, favorite);
             }
@@ -92,67 +117,77 @@
         </script>
 
 
-
-
-        <!--<div class="ui basic disabled inverted segment">--> 
-    <!--<center><h3 class="ui disabled dividing header">All Companies</h3></center>-->
-
-        <!--</div>-->
-        <div class="ui top attached button" tabindex="0">Company Listing</div>
-        <div class="ui attached segment">
-            <table class="ui celled striped table" id="resize">
-                <col width="10px" />
-                <col width="10px" />
-                <col width="40px" />
-                <col width="10px" />
-                <col width="10px" />
-                <thead>
-                    <tr>
-                        <th><center>Code</center></th>
-                <th><center>Group</center></th>
-                <th><center>Name</center></th>
-                <th><center>Favorite</center></th>
-                <th><center>Delete</center></th>
-                </tr>
-                </thead>
-
-                <tbody>
-                    <?php for ($i = 0; $i < 20; $i++) { ?>
-                        <?php foreach ($companyTableOperation->read() as $obj) { ?>
-                    <tr>
-                                <td><center><?php echo $obj->c_code; ?></center></td>
-                        <td><center><?php echo $obj->g_name; ?></center></td>
-                        <td><center><button class="ui button" id="companyNameButton" onclick="cellClicked('<?php echo $obj->c_code; ?>', '<?php echo $obj->g_id; ?>', '<?php echo $obj->g_name; ?>', '<?php echo $obj->c_name; ?>', '<?php echo $obj->c_favorite; ?>')" class="item"><?php echo $obj->c_name; ?></button></center></td>
-                        <td>
-                        <center>
-                            <div class="ui fitted checkbox">
-                                <div class="ui fitted toggle checkbox">
-                                    <input type="checkbox" class="favorite" value=<?php echo $obj->c_code; ?> <?php
-                                    if ($obj->c_favorite == '1') {
-                                        echo 'checked';
-                                    }
-                                    ?>>
-                                    <label></label>
-                                </div>
-                            </div>
-                        </center>
-                        </td>
-                        <td><center><button class="negative ui button" id="negative-ui" name="delete" value=<?php echo $obj->c_code; ?> type='submit'>Delete</button></center></td>
-                        </tr>
-                    <?php } ?> 
-                    <?php
-                }
-                ?>
-
-                </tbody>
-            </table>
+        <div class="ui grid" id="companyListingMenu">
+            <div class="row">
+                <div class="column"></div>
+                <div class="fourteen wide column">
+                    <center><button class="ui button" id="companyNameTitle">Company Listing</button></center>
+                </div>
+                <div class="column">
+                    <center>
+                        <button onclick="addCompany()" class="ui primary circular icon button">
+                            <i class="icon plus"></i>
+                        </button>
+                    </center>
+                </div>
+            </div>
         </div>
-    </div>
 
 
 
-    <!--        <button class="circular ui icon button" id="fixedButton">
-        <i class="icon settings"></i>
-    </button>-->
+
+        <table class="ui celled striped table" id="resize">
+            <col width="10px" />
+            <col width="10px" />
+            <col width="40px" />
+            <col width="10px" />
+            <col width="10px" />
+            <thead>
+                <tr>
+                    <th><center>Code</center></th>
+        <th><center>Group</center></th>
+    <th><center>Name</center></th>
+<th><center>Favorite</center></th>
+<th><center>Delete</center></th>
+</tr>
+</thead>
+
+<tbody>
+    <?php for ($i = 0; $i < 20; $i++) { ?>
+        <?php foreach ($companyTableOperation->read() as $obj) { ?>
+            <tr>
+                <td><center><?php echo $obj->c_code; ?></center></td>
+        <td><center><?php echo $obj->g_name; ?></center></td>
+        <td><center><button class="ui button" id="companyNameButton" onclick="cellClicked('<?php echo $obj->c_code; ?>', '<?php echo $obj->g_id; ?>', '<?php echo $obj->g_name; ?>', '<?php echo $obj->c_name; ?>', '<?php echo $obj->c_favorite; ?>')" class="item"><?php echo $obj->c_name; ?></button></center></td>
+        <td>
+        <center>
+            <div class="ui fitted checkbox">
+                <div class="ui fitted toggle checkbox">
+                    <input type="checkbox" class="favorite" value=<?php echo $obj->c_code; ?> <?php
+                    if ($obj->c_favorite == '1') {
+                        echo 'checked';
+                    }
+                    ?>>
+                    <label></label>
+                </div>
+            </div>
+        </center>
+        </td>
+        <td><center><button class="negative ui button" id="negative-ui" name="delete" value=<?php echo $obj->c_code; ?> type='submit'>Delete</button></center></td>
+        </tr>
+    <?php } ?> 
+    <?php
+}
+?>
+
+</tbody>
+</table>
+</div>
+
+
+
+<!--        <button class="circular ui icon button" id="fixedButton">
+    <i class="icon settings"></i>
+</button>-->
 </body>
 </html>
