@@ -1,9 +1,10 @@
 <html>
     <head>
         <?php
-        include_once 'header.php';
-        include_once 'addCompny.php';
+        include_once 'header.php'; 
+        include_once 'addCompany.php';
         ?>
+      
         <title>View</title>
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/table.css">
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/checkbox.css">
@@ -25,16 +26,11 @@
             </div>
         </div>
         <?php
-        include_once 'CompanyTableOperation.php';
-        $companyTableOperation = new CompanyTableOperation();
+        include_once 'TO_Company.php';
+        $companyTableOperation = new TO_Company();
         ?>
 
         <style type="text/css"> 
-            #fixedButton {
-                position: fixed;
-                bottom: 0px;
-                right: 0px; 
-            }
 
             #negative-ui {
                 padding: 0.5em 0.5em;
@@ -100,8 +96,10 @@
                         url: 'DeleteCompany.php',
                         data: dataValue,
                         success: function (result) {
-                            window.console.log('Successful');
-                            window.location.reload();
+                            window.console.log('Successful');                            
+                        }, 
+                        error: function(){
+                            
                         }
                     });
                 });
@@ -111,6 +109,8 @@
                 console.log("CELL CLICKED");
                 editCompany(code, groupCode, groupName, companyName, favorite);
             }
+            
+//            $('#addComp').click(addCompany);
 
 
 

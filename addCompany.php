@@ -26,6 +26,11 @@ and open the template in the editor.
 
 
         <script type="text/javascript">
+            $(document).ready(function () {
+                $('#select').dropdown();
+                $('.ui.modal').modal();
+            });
+
 
             function closeAddCompany() {
                 $('.ui.modal').modal('hide');
@@ -66,23 +71,15 @@ and open the template in the editor.
                         .modal('setting', 'transition', 'vertical flip')
                         .modal('show');
             }
-
-            $(document).ready(function () {
-                $('#select')
-                        .dropdown()
-                        ;
-            })
         </script>
 
 
     </head>
     <body>
-
         <?php
-        include_once 'GroupTableOperation.php';
-        $groupTableOperation = new GroupTableOperation();
+        include_once 'TO_Group.php';
+        $groupTableOperation = new TO_Group();
         ?>
-
         <div class="ui small modal" id="addCompanyModal">
 
             <!--<div class="ui middle aligned center aligned grid">-->

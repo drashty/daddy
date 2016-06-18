@@ -1,6 +1,6 @@
 <?php
 
-class CompanyModel {
+class ModelCompany {
     var $code;
     var $hiddenCode;
     var $name;

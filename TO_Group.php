@@ -7,15 +7,15 @@
  */
 
 include_once 'DatabaseConnection.php';
-include_once 'GroupModel.php';
+include_once 'ModelGroup.php';
 
-class GroupTableOperation {
+class TO_Group {
 
     var $mysqli;
 
     function insert($data) {
         if ($this->mysqli != NULL) {
-            $groupModelObject = new GroupModel($data);
+            $groupModelObject = new ModelGroup($data);
             $sql = "INSERT INTO c_group(g_name) VALUES (?)";
             if ($this->mysqli->prepare($sql)) {
                 $stmt = $this->mysqli->prepare($sql);
@@ -62,7 +62,7 @@ class GroupTableOperation {
 
     function updateGroupName($data) {
         if ($this->mysqli != NULL) {
-            $groupModelObject = new GroupModel($data);
+            $groupModelObject = new ModelGroup($data);
             $sql = "UPDATE c_group SET g_name = '$groupModelObject->name' WHERE g_id= '$groupModelObject->id'";
             echo $sql;
             $this->mysqli->query($sql);

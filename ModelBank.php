@@ -6,12 +6,12 @@
  * and open the template in the editor.
  */
 
-class GroupModel {
+class ModelBank {
     var $id;
     var $name;
     
     public function __construct($data) {
-        $this->id = $data['g_id'];
-        $this->name = $data['g_name'];
+        $this->id = $data['b_id'];
+        $this->name = $data['b_name'];
     }
 }

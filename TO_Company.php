@@ -1,15 +1,15 @@
 <?php
 
 include_once 'DatabaseConnection.php';
-include_once 'CompanyModel.php';
+include_once 'ModelCompany.php';
 
-class CompanyTableOperation {
+class TO_Company {
 
     var $mysqli;
 
     function insert($data) {
         if ($this->mysqli != NULL) {
-            $companyModelObject = new CompanyModel($data);
+            $companyModelObject = new ModelCompany($data);
             $sql = "INSERT INTO company(c_code, c_name, g_id, c_favorite) VALUES (?, ?, ?, ?)";
             if ($this->mysqli->prepare($sql)) {
                 $stmt = $this->mysqli->prepare($sql);
@@ -27,7 +27,7 @@ class CompanyTableOperation {
     
     function updateCompanyDetails($data) {
         if ($this->mysqli != NULL) {
-            $companyModelObject = new CompanyModel($data);
+            $companyModelObject = new ModelCompany($data);
             $sql = "UPDATE company SET c_code = '$companyModelObject->code', c_name = '$companyModelObject->name', g_id = '$companyModelObject->groupId', c_favorite = '$companyModelObject->favorite' WHERE c_code= '$companyModelObject->hiddenCode'";
             $this->mysqli->query($sql);
         }

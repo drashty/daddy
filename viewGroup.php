@@ -6,7 +6,11 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <?php include_once 'header.php'; ?>
+        <?php
+        include_once 'header.php';
+        include_once 'addGroup.php';
+        ?>
+        
         <title>View</title>
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/table.css">
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/checkbox.css">
@@ -19,10 +23,9 @@ and open the template in the editor.
         <script type="text/javascript" src="libs/semantic/dist/components/dimmer.js"></script>
     </head>
     <body>
-        <?php include_once 'addGroup.php'; ?>
         <?php
-        include_once 'GroupTableOperation.php';
-        $groupTableOperation = new GroupTableOperation();
+        include_once 'TO_Group.php';
+        $groupTableOperation = new TO_Group();
         ?>
 
 
@@ -55,7 +58,7 @@ and open the template in the editor.
                 padding: 0.5em 0.5em;
                 margin: 0.0em 0.0em;
             }
-            
+
             #groupNameTitle {
                 background-color: Transparent;
                 background-repeat:no-repeat;
@@ -112,14 +115,14 @@ and open the template in the editor.
                 </div>
                 <div class="column">
                     <center>
-                        <button onclick="addGrpup()" class="ui primary circular icon button">
+                        <button onclick="addGroup()" class="ui primary circular icon button">
                             <i class="icon plus"></i>
                         </button>
                     </center>
                 </div>
             </div>
         </div>
-        
+
         <table class="ui celled striped table" id="resize">
             <col width="40px" />
             <col width="10px" />

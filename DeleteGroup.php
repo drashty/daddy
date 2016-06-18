@@ -6,11 +6,11 @@
  * and open the template in the editor.
  */
 
-include_once 'GroupTableOperation.php';
+include_once 'TO_Group.php';
 
 if (isset($_REQUEST['g_id'])) {
     $id = $_REQUEST['g_id'];
-    $groupTableOperation = new GroupTableOperation();
+    $groupTableOperation = new TO_Group();
     $groupTableOperation->delete($id);
     header("Location:viewGroup.php");
 }

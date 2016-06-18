@@ -7,10 +7,13 @@ and open the template in the editor.
 <html>
     <head>
         <title>Dad's Software</title>
+        <?php
+        include_once 'header.php';
+        include_once 'viewCompany.php';
+        ?>
     </head>
 
     <body>
-        <?php include_once 'header.php'; ?>
-        <?php include_once 'viewCompany.php'; ?>
+
     </body>
 </html>

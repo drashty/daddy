@@ -15,21 +15,20 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/menu.css">
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/dropdown.css">
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/transition.css">
-
+        <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/reset.css">
 
         <script src="libs/semantic/examples/assets/library/jquery.min.js"></script>
         <script type="text/javascript" src="libs/semantic/dist/components/transition.js"></script>
         <script type="text/javascript" src="libs/semantic/dist/components/dropdown.js"></script>
-        
-        <?php include_once 'addCompany.php'; ?>
-        <?php include_once 'addGroup.php'; ?>
+
+
 
 
 
         <style>
-            .ui.menu:last-child {
-                margin-bottom: 10px;
-            }
+            /*            .ui.menu:last-child {
+                            margin-bottom: 10px;
+                        }*/
         </style>
 
         <script>
@@ -47,10 +46,6 @@ and open the template in the editor.
                                             ;
                                 })
                                 ;
-
-                        $('.ui.modal')
-                                .modal()
-                                ;
                     })
                     ;
         </script>
@@ -66,9 +61,13 @@ and open the template in the editor.
                 </div>
             </div>
 
-            <a class="item">
-                Group
-            </a>
+            <div class="ui dropdown item">
+                Accounts <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a href="viewBank.php" class="item">Bank List</a>
+                    <a href="viewGroup.php" class="item">Broker List</a>
+                </div>
+            </div>
 
             <a class="item">
                 Reports
