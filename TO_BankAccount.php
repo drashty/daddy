@@ -70,13 +70,20 @@ class TO_BankAccount {
 
     function read() {
         if ($this->mysqli != NULL) {
-            $sql = "SELECT * FROM bank_account";
+            $sql = "SELECT * FROM bank_account INNER JOIN bank ON bank_account.b_id = bank.b_id";
             $result = $this->mysqli->query($sql);
             $rows = Array();
             while ($row = $result->fetch_object()) {
                 $rows[] = $row;
             }
             return $rows;
+        }
+    }
+    
+    function delete($id) {
+        if ($this->mysqli != NULL) {
+            $sql = "DELETE FROM bank_account where ba_id=$id";
+            $this->mysqli->query($sql);
         }
     }
     

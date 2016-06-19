@@ -138,10 +138,10 @@
 
         <table class="ui celled striped table" id="resize">
             <col width="10px" />
-            <col width="10px" />
-            <col width="40px" />
-            <col width="10px" />
-            <col width="10px" />
+            <col width="5px" />
+            <col width="55px" />
+            <col width="5px" />
+            <col width="5px" />
             <thead>
                 <tr>
                     <th><center>Code</center></th>

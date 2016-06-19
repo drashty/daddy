@@ -87,7 +87,7 @@ and open the template in the editor.
 
         <?php
         include_once 'TO_Bank.php';
-        $bankAccountTableOperation = new TO_Bank();
+        $bankTableOperation = new TO_Bank();
         ?>
 
 
@@ -114,7 +114,7 @@ and open the template in the editor.
                                             <div class="text" id="bankNameTextField" style="">Select Bank Name</div>
                                             <div class="menu">
 
-                                                <?php foreach ($bankAccountTableOperation->read() as $obj) { ?>
+                                                <?php foreach ($bankTableOperation->read() as $obj) { ?>
                                                     <div class = "item" data-value = <?php echo $obj->b_id; ?> > <?php echo $obj->b_name; ?> </div>
                                                 <?php } ?>
                                             </div>

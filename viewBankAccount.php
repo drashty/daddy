@@ -49,9 +49,56 @@ and open the template in the editor.
             #bankListingMenu {
                 height: 85px;
             }
+
+            #bankAccountNameButton {
+                background-color: Transparent;
+                background-repeat:no-repeat;
+                border: none;
+                cursor:pointer;
+                overflow: hidden;
+                outline:none;
+                padding: 0.5em 0.5em;
+                margin: 0.0em 0.0em;
+            }
+
+            #negative-ui-bankAccount {
+                padding: 0.5em 0.5em;
+                margin: 0.0em 0.0em;
+            }
+
         </style>
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#resize").colResizable({liveDrag: true});
+
+                $('.delete').click(function () {
+                    console.log("VALUE"+$(this).val());
+                    var dataValue = {'ba_id': $(this).val()};
+                    $.ajax({
+                        type: "POST",
+                        url: 'DeleteBankAccount.php',
+                        data: dataValue,
+                        success: function (result) {
+                            window.console.log('Successful');
+                            window.location.reload();
+                        },
+                        error: function () {
+
+                        }
+                    });
+                });
+            });
+        </script>
     </head>
     <body>
+
+        <?php
+        include_once 'TO_BankAccount.php';
+        $bankAccountTableOperation = new TO_BankAccount();
+        ?>
+
         <div class="ui grid" id="bankListingMenu">
             <div class="row">
                 <div class="twelve wide column">
@@ -66,6 +113,38 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
-    </div>
+
+
+        <table class="ui celled striped table" id="resize">
+            <col width="15px" />
+            <col width="15px" />
+            <col width="40px" />
+            <col width="5px" />
+            <col width="5px" />
+            <thead>
+                <tr>
+                    <th><center>Bank Name</center></th>
+        <th><center>Account Number</center></th>
+    <th><center>Account Holder Name</center></th>
+
+<th><center>View</center></th>
+<th><center>Delete</center></th>
+</tr>
+</thead>
+
+<tbody>
+    <?php foreach ($bankAccountTableOperation->read() as $obj) { ?>
+        <tr>
+            <td><center><?php echo $obj->b_name; ?></center></td>
+    <td><center><?php echo $obj->ba_accountNumber; ?></center></td>
+    <td><center><div class="menu"><button class="ui button" id="bankAccountNameButton" onclick="editGroup('<?php echo $obj->ba_holderName; ?>', '<?php echo $obj->ba_holderName; ?>')" class="item"><?php echo $obj->ba_holderName; ?></button></div></center></td>
+
+
+    <td><center><button class="basic ui button view" id="negative-ui-bankAccount" name="delete" value=<?php echo $obj->ba_id; ?> type='submit'>View</button></center></td>
+    <td><center><button class="negative ui button delete" id="negative-ui-bankAccount" name="delete" value=<?php echo $obj->ba_id; ?> type='submit'>Delete</button></center></td>
+    </tr>
+<?php } ?> 
+</tbody>
+</table>
 </body>
 </html>
