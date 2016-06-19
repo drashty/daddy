@@ -9,6 +9,7 @@ and open the template in the editor.
         <?php
         include_once 'header.php';
         include_once 'addBank.php';
+        include_once 'addBankAccount.php';
         ?>
         <meta charset="UTF-8">
         <title></title>
@@ -34,10 +35,14 @@ and open the template in the editor.
                 cursor:pointer;
                 overflow: hidden;
                 outline:none;
-                padding: 0.5em 0.5em;
+                padding: 0.3em 0.5em;
                 margin: 0.0em 0.0em;
                 margin-top:0.0cm; 
                 font-size: 26px;
+            }
+
+            #topButtonContainer {
+                margin-top:5px; float: right; margin-right: 5px
             }
 
 
@@ -49,18 +54,18 @@ and open the template in the editor.
     <body>
         <div class="ui grid" id="bankListingMenu">
             <div class="row">
-                <div class="column"></div>
-                <div class="fourteen wide column">
+                <div class="twelve wide column">
                     <center><button class="ui button" id="bankNameTitle">Bank Listing</button></center>
                 </div>
-                <div class="column">
-                    <center>
-                        <button onclick="addBank()" class="ui primary circular icon button">
-                            <i class="icon plus"></i>
-                        </button>
-                    </center>
+
+                <div class="four wide column" id="add">
+                    <div id="topButtonContainer">
+                        <button class="ui secondary button" onclick="addBankAccount()">Add Bank Account</button>
+                        <button class="ui secondary button" onclick="addBank()">Add Bank</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>

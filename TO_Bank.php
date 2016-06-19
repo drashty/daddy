@@ -34,7 +34,7 @@ class TO_Bank {
 
     function read() {
         if ($this->mysqli != NULL) {
-            $sql = "SELECT * FROM c_group";
+            $sql = "SELECT * FROM bank";
             $result = $this->mysqli->query($sql);
             $rows = Array();
             while ($row = $result->fetch_object()) {
@@ -43,32 +43,7 @@ class TO_Bank {
             return $rows;
         }
     }
-
-    function getGroupNameForId($id) {
-        if ($this->mysqli != NULL) {
-            $sql = "SELECT * FROM c_group where g_id = $id";
-            $result = $this->mysqli->query($sql);
-            $row = $result->fetch_object();
-            return $row;
-        }
-    }
-
-    function delete($id) {
-        if ($this->mysqli != NULL) {
-            $sql = "DELETE FROM c_group where g_id=$id";
-            $this->mysqli->query($sql);
-        }
-    }
-
-    function updateGroupName($data) {
-        if ($this->mysqli != NULL) {
-            $groupModelObject = new ModelGroup($data);
-            $sql = "UPDATE c_group SET g_name = '$groupModelObject->name' WHERE g_id= '$groupModelObject->id'";
-            echo $sql;
-            $this->mysqli->query($sql);
-        }
-    }
-
+    
     public function __construct() {
         $conn = new DatabaseConnection();
         $this->mysqli = $conn->connect();

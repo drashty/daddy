@@ -64,8 +64,8 @@ and open the template in the editor.
             <div class="ui dropdown item">
                 Accounts <i class="dropdown icon"></i>
                 <div class="menu">
-                    <a href="viewBank.php" class="item">Bank List</a>
-                    <a href="viewGroup.php" class="item">Broker List</a>
+                    <a href="viewBankAccount.php" class="item">Bank Accounts</a>
+                    <a href="viewGroup.php" class="item">Broker Accounts</a>
                 </div>
             </div>
 
