@@ -10,6 +10,7 @@ and open the template in the editor.
         include_once 'header.php';
         include_once 'addBank.php';
         include_once 'addBankAccount.php';
+        include_once 'viewBankAccountDetails.php';
         ?>
         <meta charset="UTF-8">
         <title></title>
@@ -74,7 +75,7 @@ and open the template in the editor.
                 $("#resize").colResizable({liveDrag: true});
 
                 $('.delete').click(function () {
-                    console.log("VALUE"+$(this).val());
+                    console.log("VALUE" + $(this).val());
                     var dataValue = {'ba_id': $(this).val()};
                     $.ajax({
                         type: "POST",
@@ -137,10 +138,27 @@ and open the template in the editor.
         <tr>
             <td><center><?php echo $obj->b_name; ?></center></td>
     <td><center><?php echo $obj->ba_accountNumber; ?></center></td>
-    <td><center><div class="menu"><button class="ui button" id="bankAccountNameButton" onclick="editGroup('<?php echo $obj->ba_holderName; ?>', '<?php echo $obj->ba_holderName; ?>')" class="item"><?php echo $obj->ba_holderName; ?></button></div></center></td>
+    <td><center><div class="menu"><button class="ui button" id="bankAccountNameButton" onclick="editGroup('<?php echo $obj->ba_holderName; ?>', '<?php echo $obj->ba_holderName; ?>', '<?php echo $obj->ba_ifsc; ?>')" class="item"><?php echo $obj->ba_holderName; ?></button></div></center></td>
 
 
-    <td><center><button class="basic ui button view" id="negative-ui-bankAccount" name="delete" value=<?php echo $obj->ba_id; ?> type='submit'>View</button></center></td>
+    <td><center><button class="basic ui button view" id="negative-ui-bankAccount" onclick="showBankAccountDetailsModal(
+                    '<?php echo $obj->ba_holderName; ?>',
+                    '<?php echo $obj->b_name; ?>',
+                    '<?php echo $obj->ba_accountNumber; ?>',
+                    '<?php echo $obj->ba_ifsc; ?>',
+                    '<?php echo $obj->ba_netBankingUserName; ?>',
+                    '<?php echo $obj->	ba_netBankingLoginPwd; ?>',
+                    '<?php echo $obj->	ba_netBankingTransactionPwd; ?>',
+                    '<?php echo $obj->	ba_atmCardNumber; ?>',
+                    '<?php echo $obj->	ba_atmCvv; ?>',
+                    '<?php echo $obj->	ba_atmPaymentPwd; ?>',
+                    '<?php echo $obj->	ba_atmPin; ?>',
+                    '<?php echo $obj->	ba_atmExpiryMonth; ?>',
+                    '<?php echo $obj->	ba_atmExpiryYear; ?>',
+                    '<?php echo $obj->	ba_mobileAppPin; ?>',
+                    '<?php echo $obj->	ba_notes; ?>'
+                    )" 
+                        name="delete" value=<?php echo $obj->ba_id; ?> type='submit'>View</button></center></td>
     <td><center><button class="negative ui button delete" id="negative-ui-bankAccount" name="delete" value=<?php echo $obj->ba_id; ?> type='submit'>Delete</button></center></td>
     </tr>
 <?php } ?> 
