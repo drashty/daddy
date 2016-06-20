@@ -8,7 +8,7 @@ and open the template in the editor.
     <head>
         <?php
         include_once 'header.php';
-        include_once 'addBank.php';
+        include_once 'addBroker.php';
         include_once 'addBankAccount.php';
         include_once 'viewBankAccountDetails.php';
         ?>
@@ -102,14 +102,14 @@ and open the template in the editor.
 
         <div class="ui grid" id="bankListingMenu">
             <div class="row">
-                <div class="twelve wide column">
-                    <center><button class="ui button" id="bankNameTitle">Bank Accounts</button></center>
+                <div class="eleven wide column">
+                    <center><button class="ui button" id="bankNameTitle">Broker Accounts</button></center>
                 </div>
 
-                <div class="four wide column" id="add">
+                <div class="five wide column" id="add">
                     <div id="topButtonContainer">
-                        <button class="ui secondary button" onclick="addBankAccount()">Add Bank Account</button>
-                        <button class="ui secondary button" onclick="addBank()">Add Bank</button>
+                        <button class="ui secondary button" onclick="addBroker()">Add Broker Account</button>
+                        <button class="ui secondary button" onclick="addBroker()">Add Broker</button>
                     </div>
                 </div>
             </div>

@@ -23,14 +23,6 @@ and open the template in the editor.
 
 
 
-
-
-        <style>
-            /*            .ui.menu:last-child {
-                            margin-bottom: 10px;
-                        }*/
-        </style>
-
         <script>
             $(document)
                     .ready(function () {
@@ -65,7 +57,7 @@ and open the template in the editor.
                 Accounts <i class="dropdown icon"></i>
                 <div class="menu">
                     <a href="viewBankAccount.php" class="item">Bank Accounts</a>
-                    <a href="viewGroup.php" class="item">Broker Accounts</a>
+                    <a href="viewBroker.php" class="item">Broker Accounts</a>
                 </div>
             </div>
 
