@@ -80,6 +80,30 @@ class TO_BankAccount {
         }
     }
     
+    function updateBankAccountDetails($data) {
+        if ($this->mysqli != NULL) {
+            $bankAccountModelObject = new ModelBankAccount($data);
+            $sql = "UPDATE bank_account SET "
+                    . "ba_holderName = '$bankAccountModelObject->holderName', "
+                    . "b_id = '$bankAccountModelObject->bankId', "
+                    . "ba_accountNumber = '$bankAccountModelObject->accountNumber', "
+                    . "ba_ifsc = '$bankAccountModelObject->ifsc', "
+                    . "ba_netBankingUserName = '$bankAccountModelObject->netBankingUserName', "
+                    . "ba_netBankingLoginPwd = '$bankAccountModelObject->netBankingLoginPwd', "
+                    . "ba_netBankingTransactionPwd = '$bankAccountModelObject->netBankingTransactionPwd', "
+                    . "ba_atmCardNumber = '$bankAccountModelObject->atmCardNumber', "
+                    . "ba_atmExpiryMonth = '$bankAccountModelObject->atmExpiryMonth', "
+                    . "ba_atmExpiryYear = '$bankAccountModelObject->atmExpiryYear', "
+                    . "ba_atmCvv = '$bankAccountModelObject->atmCvv', "
+                    . "ba_atmPaymentPwd = '$bankAccountModelObject->atmPaymentPwd', "
+                    . "ba_atmPin = '$bankAccountModelObject->atmPin', "
+                    . "ba_mobileAppPin = '$bankAccountModelObject->mobileAppPin', "
+                    . "ba_notes = '$bankAccountModelObject->notes' "
+                    . "WHERE ba_id= '$bankAccountModelObject->id'";
+            $this->mysqli->query($sql);
+        }
+    }
+    
     function delete($id) {
         if ($this->mysqli != NULL) {
             $sql = "DELETE FROM bank_account where ba_id=$id";

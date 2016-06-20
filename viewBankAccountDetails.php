@@ -35,7 +35,6 @@ and open the template in the editor.
             }
 
             function showBankAccountDetailsModal(accountName, bankName, accountNumber, IFSC, nbUserName, nbLoginPassword, nbTransactionPassword, atmCardNumber, atmCVV, atmPaymentPwd, atmPin, atmExpiryMonth, atmExpiryYear, mobileAppPin, notes) {
-                console.log("ba_"+atmExpiryYear);
                 $('#bankAccountHolderNameTextField').val(accountName);
                 $('#bankAccountNameTextField').val(bankName);
                 $('#bankAccountNumberTextField').val(accountNumber);
@@ -49,8 +48,8 @@ and open the template in the editor.
                 $('#atmPinTextField').val(atmPin);
                 $('#atmExpiryMonth').val(atmExpiryMonth);
                 $('#atmExpiryYear').val(atmExpiryYear);
-                $('#ba_mobileAppPin').val(mobileAppPin);
-                $('#ba_notes').val(notes);
+                $('#mobilePin').val(mobileAppPin);
+                $('#ba_AccountDetailnotes').val(notes);
 
                 $('#ViewBankAccountDetailsModal')
                         .modal('setting', 'transition', 'vertical flip')
@@ -197,7 +196,7 @@ and open the template in the editor.
                             <div class="ui segment">
                                 <div class="field">
                                     <label>Application Pin</label>
-                                    <input type="text" id="ba_mobileAppPin" name="ba_mobileAppPin" placeholder="Application PIN" onfocus="this.value = this.value;" value= '<?php echo $result->b_name ?>'/>
+                                    <input type="text" id="mobilePin" placeholder="Application PIN"/>
                                 </div>
                             </div>
                         </div>
@@ -206,7 +205,7 @@ and open the template in the editor.
                         <div class="ui segment">
                             <h4 class="ui dividing header">Notes</h4>
                             <div class="field">
-                                <textarea rows="2" id="ba_notes" name="ba_notes"></textarea>
+                                <textarea rows="2" id="ba_AccountDetailnotes" name="ba_notes"></textarea>
                             </div>
                         </div>
 
