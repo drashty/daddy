@@ -29,7 +29,7 @@ and open the template in the editor.
                 $('#brokerId').val("");
                 $('#modalHeader').html("Add Broker");
                 $('#submitBrokerButton').val("Add");
-                showModal();
+                showBrokerModal();
             }
 
             function editBroker(BrokerId, BrokerName) {
@@ -37,10 +37,10 @@ and open the template in the editor.
                 $('#brokerId').val(BrokerId);
                 $('#modalHeader').html("Edit Broker");
                 $('#submitBrokerButton').val("Update");
-                showModal();
+                showBrokerModal();
             }
 
-            function showModal() {
+            function showBrokerModal() {
                 $('#addBrokerModal')
                         .modal('setting', 'transition', 'vertical flip')
                         .modal('show');

@@ -57,7 +57,7 @@ and open the template in the editor.
                 Accounts <i class="dropdown icon"></i>
                 <div class="menu">
                     <a href="viewBankAccount.php" class="item">Bank Accounts</a>
-                    <a href="viewBroker.php" class="item">Broker Accounts</a>
+                    <a href="viewBrokerAccount.php" class="item">Broker Accounts</a>
                 </div>
             </div>
 

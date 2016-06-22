@@ -9,8 +9,8 @@ and open the template in the editor.
         <?php
         include_once 'header.php';
         include_once 'addBroker.php';
-        include_once 'addBankAccount.php';
-        include_once 'viewBankAccountDetails.php';
+        include_once 'addBrokerAccount.php';
+        include_once 'viewBrokerAccountDetails.php';
         ?>
         <meta charset="UTF-8">
         <title></title>
@@ -96,8 +96,8 @@ and open the template in the editor.
     <body>
 
         <?php
-        include_once 'TO_BankAccount.php';
-        $bankAccountTableOperation = new TO_BankAccount();
+        include_once 'TO_BrokerAccount.php';
+        $brokerAccountTableOperation = new TO_BrokerAccount();
         ?>
 
         <div class="ui grid" id="bankListingMenu">
@@ -108,7 +108,7 @@ and open the template in the editor.
 
                 <div class="five wide column" id="add">
                     <div id="topButtonContainer">
-                        <button class="ui secondary button" onclick="addBroker()">Add Broker Account</button>
+                        <button class="ui secondary button" onclick="addBrokerAccount()">Add Broker Account</button>
                         <button class="ui secondary button" onclick="addBroker()">Add Broker</button>
                     </div>
                 </div>
@@ -124,8 +124,8 @@ and open the template in the editor.
             <col width="5px" />
             <thead>
                 <tr>
-                    <th><center>Bank Name</center></th>
-        <th><center>Account Number</center></th>
+                    <th><center>Broker Name</center></th>
+        <th><center>User Id</center></th>
     <th><center>Account Holder Name</center></th>
 
 <th><center>View</center></th>
@@ -134,10 +134,10 @@ and open the template in the editor.
 </thead>
 
 <tbody>
-    <?php foreach ($bankAccountTableOperation->read() as $obj) { ?>
+    <?php foreach ($brokerAccountTableOperation->read() as $obj) { ?>
         <tr>
             <td><center><?php echo $obj->b_name; ?></center></td>
-    <td><center><?php echo $obj->ba_accountNumber; ?></center></td>
+    <td><center><?php echo $obj->ba_userId; ?></center></td>
     <td><center><div class="menu"><button class="ui button" id="bankAccountNameButton" onclick= "editBankAccount(
                     '<?php echo $obj->ba_id; ?>',
                     '<?php echo $obj->ba_holderName; ?>',
@@ -158,27 +158,26 @@ and open the template in the editor.
                     '<?php echo $obj->ba_notes; ?>'
                     )">
 
-                <?php echo $obj->ba_holderName; ?>        
+                <?php echo $obj->ba_name; ?>        
             </button></div></center></td>
 
 
-    <td><center><button class="basic ui button view" id="negative-ui-bankAccount" onclick="showBankAccountDetailsModal(
-                    '<?php echo $obj->ba_holderName; ?>',
+    <td><center><button class="basic ui button view" id="negative-ui-bankAccount" onclick="showbrokerAccountDetailsModal(
+                    '<?php echo $obj->ba_name; ?>',
                     '<?php echo $obj->b_name; ?>',
-                    '<?php echo $obj->ba_accountNumber; ?>',
-                    '<?php echo $obj->ba_ifsc; ?>',
-                    '<?php echo $obj->ba_netBankingUserName; ?>',
-                    '<?php echo $obj->ba_netBankingLoginPwd; ?>',
-                    '<?php echo $obj->ba_netBankingTransactionPwd; ?>',
-                    '<?php echo $obj->ba_atmCardNumber; ?>',
-                    '<?php echo $obj->ba_atmCvv; ?>',
-                    '<?php echo $obj->ba_atmPaymentPwd; ?>',
-                    '<?php echo $obj->ba_atmPin; ?>',
-                    '<?php echo $obj->ba_atmExpiryMonth; ?>',
-                    '<?php echo $obj->ba_atmExpiryYear; ?>',
-                    '<?php echo $obj->ba_mobileAppPin; ?>',
+                    '<?php echo $obj->ba_birthDate; ?>',
+                    '<?php echo $obj->ba_panCardNumber; ?>',
+                    '<?php echo $obj->ba_userId; ?>',
+                    '<?php echo $obj->ba_loginPassword; ?>',
+                    '<?php echo $obj->ba_transactionPassword; ?>',
+                    '<?php echo $obj->ba_partnerCode; ?>',
+                    '<?php echo $obj->ba_clientCode; ?>',
+                    '<?php echo $obj->ba_accountOpenDate; ?>',
+                    '<?php echo $obj->ba_boId; ?>',
+                    '<?php echo $obj->ba_dpId; ?>',
+                    '<?php echo $obj->ba_email; ?>',
                     '<?php echo $obj->ba_notes; ?>'
-                    )" 
+                )" 
                         name="delete" value=<?php echo $obj->ba_id; ?> type='submit'>View</button></center></td>
     <td><center><button class="negative ui button delete" id="negative-ui-bankAccount" name="delete" value=<?php echo $obj->ba_id; ?> type='submit'>Delete</button></center></td>
     </tr>
