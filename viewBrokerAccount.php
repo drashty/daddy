@@ -62,7 +62,7 @@ and open the template in the editor.
                 margin: 0.0em 0.0em;
             }
 
-            #negative-ui-bankAccount {
+            #negative-ui-brokerAccount {
                 padding: 0.5em 0.5em;
                 margin: 0.0em 0.0em;
             }
@@ -79,7 +79,7 @@ and open the template in the editor.
                     var dataValue = {'ba_id': $(this).val()};
                     $.ajax({
                         type: "POST",
-                        url: 'DeleteBankAccount.php',
+                        url: 'DeleteBrokerAccount.php',
                         data: dataValue,
                         success: function (result) {
                             window.console.log('Successful');
@@ -162,7 +162,7 @@ and open the template in the editor.
             </button></div></center></td>
 
 
-    <td><center><button class="basic ui button view" id="negative-ui-bankAccount" onclick="showbrokerAccountDetailsModal(
+    <td><center><button class="basic ui button view" id="negative-ui-brokerAccount" onclick="showbrokerAccountDetailsModal(
                     '<?php echo $obj->ba_name; ?>',
                     '<?php echo $obj->b_name; ?>',
                     '<?php echo $obj->ba_birthDate; ?>',
@@ -179,7 +179,7 @@ and open the template in the editor.
                     '<?php echo $obj->ba_notes; ?>'
                 )" 
                         name="delete" value=<?php echo $obj->ba_id; ?> type='submit'>View</button></center></td>
-    <td><center><button class="negative ui button delete" id="negative-ui-bankAccount" name="delete" value=<?php echo $obj->ba_id; ?> type='submit'>Delete</button></center></td>
+    <td><center><button class="negative ui button delete" id="negative-ui-brokerAccount" name="delete" value=<?php echo $obj->id; ?> type='submit'>Delete</button></center></td>
     </tr>
 <?php } ?> 
 </tbody>

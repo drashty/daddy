@@ -199,8 +199,7 @@ and open the template in the editor.
 
 
                     <div class="sixteen wide field">
-                        <input class="ui primary button" id="submitBrokerAccountButton" type="submit" name="send" value="Add" id="inputid">
-                        <input class="ui button" type="button" value="Cancel" onclick="closeAddBrokerAccount()">
+                        <input class="ui button" type="button" value="Close" onclick="closeAddBrokerAccount()">
                     </div>
                 </form>
             </div>
