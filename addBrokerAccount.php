@@ -54,9 +54,42 @@ and open the template in the editor.
                 showModalBrokerAccount();
             }
 
-            function editBrokerAccount(BrokerAccountId, BrokerAccountName) {
-                $('#brokerAccountTextField').val(BrokerAccountName);
-                $('#brokerAccountId').val(BrokerAccountId);
+            function editBrokerAccount(
+                    accountId,
+                    accountName,
+                    brokerId,
+                    brokerName,
+                    birthDate,
+                    panCardNumber,
+                    userId,
+                    loginPassword,
+                    transactionPassword,
+                    partnerCode,
+                    clientCode,
+                    accountOpenDate,
+                    boId,
+                    dpId,
+                    email,
+                    notes) {
+
+                $('#brokerAccountId').val(accountId);
+                $('#ba_name').val(accountName);
+                $('#b_id').val(brokerId);
+                $('#ba_birthDate').val(birthDate);
+                $('#ba_panCardNumber').val(panCardNumber);
+                $('#ba_userId').val(userId);
+                $('#ba_loginPassword').val(loginPassword);
+                $('#ba_transactionPassword').val(transactionPassword);
+                $('#ba_partnerCode').val(partnerCode);
+                $('#ba_clientCode').val(clientCode);
+                $('#ba_accountOpenDate').val(accountOpenDate);
+                $('#ba_boId').val(boId);
+                $('#ba_dpId').val(dpId);
+                $('#ba_email').val(email);
+                $('#ba_notes').val(notes);
+
+
+                $('#viewBrokerNameTextField').html(brokerName);
                 $('#modalHeaderBrokerAccount').html("Edit Broker Account");
                 $('#submitBrokerAccountButton').val("Update");
                 showModalBrokerAccount();
@@ -89,7 +122,7 @@ and open the template in the editor.
             <div class="ui basic segment"> 
                 <form class ="ui form" id="brokerAccountFormId" method="post" name="insertform" action="InsertBrokerAccount.php"> 
                     <!--<div class="ui segment">-->
-                    <input type="hidden" id="brokerAccountId" name="ba_id" value=""/>
+                    <input type="hidden" id="brokerAccountId" name="id" value=""/>
                     <div class="sixteen wide field">
                         <div class="ui segment">
                             <h4 class="ui dividing header">Account Details</h4>
@@ -102,7 +135,7 @@ and open the template in the editor.
                                         <div class="ui selection dropdown" id="brokerNameSelection">
                                             <input type="hidden" name="b_id" id="b_id">
                                             <i class="dropdown icon"></i>
-                                            <div class="text" id="brokerNameTextField" style="">Select Broker</div>
+                                            <div class="text" id="viewBrokerNameTextField" style="">Select Broker</div>
                                             <div class="menu">
 
                                                 <?php foreach ($brokerTableOperation->read() as $obj) { ?>
