@@ -1,10 +1,11 @@
 <html>
     <head>
         <?php
-        include_once 'header.php'; 
+        include_once 'header.php';
         include_once 'addCompany.php';
+        include_once 'addGroup.php';
         ?>
-      
+
         <title>View</title>
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/table.css">
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/checkbox.css">
@@ -17,18 +18,6 @@
         <script src="libs/resizablecell/colResizable.js"></script>
         <link rel="stylesheet" type="text/css" href="libs/semantic/dist/components/dimmer.css">
         <script type="text/javascript" src="libs/semantic/dist/components/dimmer.js"></script>
-    </head>
-
-    <body> 
-        <div class="ui page dimmer">
-            <div class="content">
-                <!--Page content will go here-->
-            </div>
-        </div>
-        <?php
-        include_once 'TO_Company.php';
-        $companyTableOperation = new TO_Company();
-        ?>
 
         <style type="text/css"> 
 
@@ -61,19 +50,45 @@
                 font-size: 26px;
             }
 
+            #companyTitle {
+                height: 30px;
+                background-color: Transparent;
+                background-repeat:no-repeat;
+                border: none;
+                cursor:pointer;
+                overflow: hidden;
+                outline:none;
+                padding: 0.5em 0.5em;
+                margin: 0.0em 0.0em;
+                margin-top:0.0cm; 
+                font-size: 18px;
+            }
+
             #companyListingMenu {
                 height: 85px;
+                margin-left: 1px;
+                margin-right: 1px;
+            }
+
+            #searchBarSegment {
+                height: 75px;
+            }
+
+            #topButtonContainer {
+                float: left; margin-right: 1px; background-color: red
             }
 
 
             table.fixed { table-layout:fixed; }
             table.fixed td { overflow: hidden; }
         </style>
+
+
         <script type="text/javascript">
             $(document).ready(function () {
-                $(function () {
-                    $("#resize").colResizable();
-                });
+
+                $("#resize").colResizable({liveDrag: true});
+
                 $('.favorite').click(function () {
                     console.log($(this).val());
                     console.log($(this).is(':checked'));
@@ -87,7 +102,7 @@
                         }
                     });
                 });
-                $("#resize").colResizable({liveDrag: true});
+
 
                 $('#negative-ui').click(function () {
                     var dataValue = {'c_code': $(this).val()};
@@ -96,10 +111,34 @@
                         url: 'DeleteCompany.php',
                         data: dataValue,
                         success: function (result) {
-                            window.console.log('Successful');                            
-                        }, 
-                        error: function(){
-                            
+                            window.console.log('Successful');
+                        },
+                        error: function () {
+
+                        }
+                    });
+                });
+
+                $('#searchBarCompany').keyup(function () {
+                    console.log("VALUE" + $(this).val());
+                    var dataValue = {'enteredText': $(this).val()};
+                    $.ajax({
+                        type: "POST",
+                        url: 'SearchCompany.php',
+                        data: dataValue,
+                        success: function (result) {
+                            window.console.log('Successful');
+                            window.console.log(result);
+                            $.each(JSON.parse(result), function (index, value) {
+                                console.log(value.c_name);
+                                console.log(value.c_favorite);
+                                console.log(value.g_id);
+                                console.log(value.c_code);
+                                $('#companyTableTR').append("<td><center></center></td>")
+                            });
+                        },
+                        error: function () {
+
                         }
                     });
                 });
@@ -109,29 +148,50 @@
                 console.log("CELL CLICKED");
                 editCompany(code, groupCode, groupName, companyName, favorite);
             }
-            
-//            $('#addComp').click(addCompany);
-
-
-
         </script>
+    </head>
+
+    <body> 
+        <div class="ui page dimmer">
+            <div class="content">
+                <!--Page content will go here-->
+            </div>
+        </div>
+        <?php
+        include_once 'TO_Company.php';
+        $companyTableOperation = new TO_Company();
+        ?>
 
 
-        <div class="ui grid" id="companyListingMenu">
+        <div class="ui grid"> 
             <div class="row">
-                <div class="column"></div>
-                <div class="fourteen wide column">
-                    <center><button class="ui button" id="companyNameTitle">Company Listing</button></center>
-                </div>
-                <div class="column">
-                    <center>
-                        <button onclick="addCompany()" class="ui primary circular icon button">
-                            <i class="icon plus"></i>
-                        </button>
-                    </center>
+                <div class="sixteen wide column">
+                    <center><button class="ui button" id="companyTitle">Company Listing</button></center> 
                 </div>
             </div>
         </div>
+
+        <!--<div class="ui segment" id="searchBarSegment">--> 
+        <div class="ui grid" id="companyListingMenu">
+            <div class="row">
+                <div class="twelve wide column">
+                    <div class="ui fluid icon input">
+                        <input type="text" id="searchBarCompany" placeholder="Search...">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+
+                <div class="four wide column" id="add">
+                    <div id="topButtonContainer">
+                        <button class="ui secondary button" onclick="addCompany()">Add Company</button>
+                        <button class="ui secondary button" onclick="addGroup()">Add Group</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--</div>-->
+
 
 
 
@@ -155,7 +215,7 @@
 <tbody>
     <?php for ($i = 0; $i < 20; $i++) { ?>
         <?php foreach ($companyTableOperation->read() as $obj) { ?>
-            <tr>
+            <tr id="companyTableTR">
                 <td><center><?php echo $obj->c_code; ?></center></td>
         <td><center><?php echo $obj->g_name; ?></center></td>
         <td><center><button class="ui button" id="companyNameButton" onclick="cellClicked('<?php echo $obj->c_code; ?>', '<?php echo $obj->g_id; ?>', '<?php echo $obj->g_name; ?>', '<?php echo $obj->c_name; ?>', '<?php echo $obj->c_favorite; ?>')" class="item"><?php echo $obj->c_name; ?></button></center></td>

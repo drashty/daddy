@@ -49,6 +49,18 @@ class TO_Company {
             return $rows;
         }
     }
+    
+    function readLike($enteredText) {
+        if($this->mysqli != NULL) {
+            $sql = "SELECT * FROM company INNER JOIN c_group ON company.g_id = c_group.g_id WHERE c_name LIKE '%$enteredText%' OR c_code LIKE '%$enteredText%'";
+            $result = $this->mysqli->query($sql);
+            $rows = Array();
+            while ($row = $result->fetch_object()) {
+                $rows[] = $row;
+            }
+            return $rows;
+        }
+    }
 
     function delete($id) {
         if ($this->mysqli != NULL) {
